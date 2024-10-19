@@ -1,0 +1,631 @@
+Please enter a MongoDB connection string (Default: mongodb://localhost/): mongod
+mongod
+Current Mongosh Log ID: 67134dacd8f8846853c73bf7
+Connecting to:          mongodb://127.0.0.1:27017/mongod?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.1
+Using MongoDB:          7.0.14
+Using Mongosh:          2.3.1
+mongosh 2.3.2 is available for download: https://www.mongodb.com/try/download/shell
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2024-10-14T08:37:47.556+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+Warning: Found ~/.mongorc.js, but not ~/.mongoshrc.js. ~/.mongorc.js will not be loaded.
+  You may want to copy or rename ~/.mongorc.js to ~/.mongoshrc.js.
+mongod> show database
+MongoshInvalidInputError: [COMMON-10001] 'database' is not a valid argument for "show".
+mongod> show databases
+admin     180.00 KiB
+cit       120.00 KiB
+config     96.00 KiB
+demo      208.00 KiB
+employee  144.00 KiB
+face       80.00 KiB
+local      72.00 KiB
+mongod> use admin
+switched to db admin
+admin> db.createUser({user:"sasi123",pwd:"12345",roles:[{role:"read",db:"face"}]})
+{ ok: 1 }
+admin> db.auth("sasi123","12345")
+{ ok: 1 }
+admin> db.createUser({user:"user1",pwd:passwordPrompt(),roles:[{role:"read",admin> db.createUser({user:"user1",pwd:passwordPrompt(),roles:[{role:"read",db:"admin> db.createUser({user:"user1",pwd:passwordPrompt(),roles:[{role:"read",db:"demo"},{role:"readwrite",db:"demo"}]})
+Enter password
+MongoServerError[RoleNotFound]: Could not find role: readwrite@demo
+admin> db.createUser( { user: "admin001", pwd: "admin001", roles: [ { role: "readWrite", db: "face" }, "clusterAdmin"] });
+MongoServerError[Location51003]: User "admin001@admin" already exists
+admin> db.createUser( { user: "admin001", pwd: "admin01", roles: [ { role: "readWrite", db: "face" }, "clusterAdmin"] });
+MongoServerError[Location51003]: User "admin001@admin" already exists
+admin> db.createUser( { user: "admin85", pwd: "admin001", roles: [ { role: "readWrite", db: "face" }, "clusterAdmin"] });
+{ ok: 1 }
+admin>  db.createUser({user:"user1",pwd:passwordPrompt(),roles:[{role:"read",db:"demo"},{role:"readWrite",db:"demo"},"clusterAdmin"]})
+Enter password
+******{ ok: 1 }
+admin> db.getRoles();
+{ roles: [], ok: 1 }
+admin> show roles()
+MongoshInvalidInputError: [COMMON-10001] 'roles()' is not a valid argument for "show".
+admin> show roles
+[
+  {
+    role: 'readWrite',
+    db: 'admin',
+    isBuiltin: true,
+    roles: [],
+    inheritedRoles: []
+  },
+  {
+    role: 'clusterAdmin',
+    db: 'admin',
+    isBuiltin: true,
+    roles: [],
+    inheritedRoles: []
+  },
+  {
+    role: 'enableSharding',
+    db: 'admin',
+    isBuiltin: true,
+    roles: [],
+    inheritedRoles: []
+  },
+  {
+    role: 'clusterMonitor',
+    db: 'admin',
+    isBuiltin: true,
+    roles: [],
+    inheritedRoles: []
+  },
+  {
+    role: 'readWriteAnyDatabase',
+    db: 'admin',
+    isBuiltin: true,
+    roles: [],
+    inheritedRoles: []
+  },
+  {
+    role: 'root',
+    db: 'admin',
+    isBuiltin: true,
+    roles: [],
+    inheritedRoles: []
+  },
+  {
+    role: 'read',
+    db: 'admin',
+    isBuiltin: true,
+    roles: [],
+    inheritedRoles: []
+  },
+  {
+    role: '__queryableBackup',
+    db: 'admin',
+    isBuiltin: true,
+    roles: [],
+    inheritedRoles: []
+  },
+  {
+    role: 'dbAdminAnyDatabase',
+    db: 'admin',
+    isBuiltin: true,
+    roles: [],
+    inheritedRoles: []
+  },
+  {
+    role: 'readAnyDatabase',
+    db: 'admin',
+    isBuiltin: true,
+    roles: [],
+    inheritedRoles: []
+  },
+  {
+    role: 'restore',
+    db: 'admin',
+    isBuiltin: true,
+    roles: [],
+    inheritedRoles: []
+  },
+  {
+    role: 'userAdmin',
+    db: 'admin',
+    isBuiltin: true,
+    roles: [],
+    inheritedRoles: []
+  },
+  {
+    role: 'dbOwner',
+    db: 'admin',
+    isBuiltin: true,
+    roles: [],
+    inheritedRoles: []
+  },
+  {
+    role: 'userAdminAnyDatabase',
+    db: 'admin',
+    isBuiltin: true,
+    roles: [],
+    inheritedRoles: []
+  },
+  {
+    role: 'hostManager',
+    db: 'admin',
+    isBuiltin: true,
+    roles: [],
+    inheritedRoles: []
+  },
+  {
+    role: '__system',
+    db: 'admin',
+    isBuiltin: true,
+    roles: [],
+    inheritedRoles: []
+  },
+  {
+    role: 'clusterManager',
+    db: 'admin',
+    isBuiltin: true,
+    roles: [],
+    inheritedRoles: []
+  },
+  {
+    role: 'backup',
+    db: 'admin',
+    isBuiltin: true,
+    roles: [],
+    inheritedRoles: []
+  },
+  {
+    role: 'directShardOperations',
+    db: 'admin',
+    isBuiltin: true,
+    roles: [],
+    inheritedRoles: []
+  },
+  {
+    role: 'dbAdmin',
+    db: 'admin',
+    isBuiltin: true,
+    roles: [],
+    inheritedRoles: []
+  }
+]
+admin> show user
+MongoshInvalidInputError: [COMMON-10001] 'user' is not a valid argument for "show".
+admin> show user()
+MongoshInvalidInputError: [COMMON-10001] 'user()' is not a valid argument for "show".
+admin> show user();
+MongoshInvalidInputError: [COMMON-10001] 'user()' is not a valid argument for "show".
+admin> use products
+switched to db products
+products> db.getRole( "read", { showPrivileges: true } )
+{
+  db: 'products',
+  role: 'read',
+  roles: [],
+  privileges: [
+    {
+      resource: { db: 'products', collection: '' },
+      actions: [
+        'changeStream',
+        'collStats',
+        'dbHash',
+        'dbStats',
+        'find',
+        'killCursors',
+        'listCollections',
+        'listIndexes',
+        'listSearchIndexes',
+        'planCacheRead'
+      ]
+    },
+    {
+      resource: { db: 'products', collection: 'system.js' },
+      actions: [
+        'changeStream',
+        'collStats',
+        'dbHash',
+        'dbStats',
+        'find',
+        'killCursors',
+        'listCollections',
+        'listIndexes',
+        'listSearchIndexes',
+        'planCacheRead'
+      ]
+    }
+  ],
+  inheritedRoles: [],
+  inheritedPrivileges: [
+    {
+      resource: { db: 'products', collection: '' },
+      actions: [
+        'changeStream',
+        'collStats',
+        'dbHash',
+        'dbStats',
+        'find',
+        'killCursors',
+        'listCollections',
+        'listIndexes',
+        'listSearchIndexes',
+        'planCacheRead'
+      ]
+    },
+    {
+      resource: { db: 'products', collection: 'system.js' },
+      actions: [
+        'changeStream',
+        'collStats',
+        'dbHash',
+        'dbStats',
+        'find',
+        'killCursors',
+        'listCollections',
+        'listIndexes',
+        'listSearchIndexes',
+        'planCacheRead'
+      ]
+    }
+  ],
+  isBuiltin: true
+}
+products> use reporting
+switched to db reporting
+reporting> db.getUser("reportsUser")
+null
+reporting> db.getUser("admin85")
+null
+reporting> db.getrole("admin85")
+TypeError: db.getrole is not a function
+reporting> db.getRole("admin85")
+null
+reporting> db.getRole("readWrite",{priviledged:"true"})
+MongoServerError[Location40415]: BSON field 'rolesInfo.priviledged' is an unknown field.
+reporting> db.getRole("readWrite",{showPrivileges:"true"})
+MongoServerError[BadValue]: Failed to parse 'showPrivileges'. 'showPrivileges' should either be a boolean or the string 'asUserFragment', given: showPrivileges: "true"
+reporting> db.getRole("readWrite",{showPrivileges:true})
+{
+  db: 'reporting',
+  role: 'readWrite',
+  roles: [],
+  privileges: [
+    {
+      resource: { db: 'reporting', collection: '' },
+      actions: [
+        'changeStream',
+        'collStats',
+        'compactStructuredEncryptionData',
+        'convertToCapped',
+        'createCollection',
+        'createIndex',
+        'createSearchIndexes',
+        'dbHash',
+        'dbStats',
+        'dropCollection',
+        'dropIndex',
+        'dropSearchIndex',
+        'find',
+        'insert',
+        'killCursors',
+        'listCollections',
+        'listIndexes',
+        'listSearchIndexes',
+        'updateSearchIndex',
+        'planCacheRead',
+        'remove',
+        'renameCollectionSameDB',
+        'update'
+      ]
+    },
+    {
+      resource: { db: 'reporting', collection: 'system.js' },
+      actions: [
+        'changeStream',
+        'collStats',
+        'compactStructuredEncryptionData',
+        'convertToCapped',
+        'createCollection',
+        'createIndex',
+        'createSearchIndexes',
+        'dbHash',
+        'dbStats',
+        'dropCollection',
+        'dropIndex',
+        'dropSearchIndex',
+        'find',
+        'insert',
+        'killCursors',
+        'listCollections',
+        'listIndexes',
+        'listSearchIndexes',
+        'updateSearchIndex',
+        'planCacheRead',
+        'remove',
+        'renameCollectionSameDB',
+        'update'
+      ]
+    }
+  ],
+  inheritedRoles: [],
+  inheritedPrivileges: [
+    {
+      resource: { db: 'reporting', collection: '' },
+      actions: [
+        'changeStream',
+        'collStats',
+        'compactStructuredEncryptionData',
+        'convertToCapped',
+        'createCollection',
+        'createIndex',
+        'createSearchIndexes',
+        'dbHash',
+        'dbStats',
+        'dropCollection',
+        'dropIndex',
+        'dropSearchIndex',
+        'find',
+        'insert',
+        'killCursors',
+        'listCollections',
+        'listIndexes',
+        'listSearchIndexes',
+        'updateSearchIndex',
+        'planCacheRead',
+        'remove',
+        'renameCollectionSameDB',
+        'update'
+      ]
+    },
+    {
+      resource: { db: 'reporting', collection: 'system.js' },
+      actions: [
+        'changeStream',
+        'collStats',
+        'compactStructuredEncryptionData',
+        'convertToCapped',
+        'createCollection',
+        'createIndex',
+        'createSearchIndexes',
+        'dbHash',
+        'dbStats',
+        'dropCollection',
+        'dropIndex',
+        'dropSearchIndex',
+        'find',
+        'insert',
+        'killCursors',
+        'listCollections',
+        'listIndexes',
+        'listSearchIndexes',
+        'updateSearchIndex',
+        'planCacheRead',
+        'remove',
+        'renameCollectionSameDB',
+        'update'
+      ]
+    }
+  ],
+  isBuiltin: true
+}
+reporting> db.getRole("readWrite")
+{
+  db: 'reporting',
+  role: 'readWrite',
+  roles: [],
+  inheritedRoles: [],
+  isBuiltin: true
+}
+reporting> db.getRole("read")
+{
+  db: 'reporting',
+  role: 'read',
+  roles: [],
+  inheritedRoles: [],
+  isBuiltin: true
+}
+reporting> db.getRole("Write")
+null
+reporting> use admin
+switched to db admin
+admin> db.getRole("Write")
+null
+admin> db.getRole("read")
+{
+  db: 'admin',
+  role: 'read',
+  roles: [],
+  inheritedRoles: [],
+  isBuiltin: true
+}
+admin> db.getRole("readWrite")
+{
+  db: 'admin',
+  role: 'readWrite',
+  roles: [],
+  inheritedRoles: [],
+  isBuiltin: true
+}
+admin> db.getRole("readWrite",{showPrivileges:true})
+{
+  db: 'admin',
+  role: 'readWrite',
+  roles: [],
+  privileges: [
+    {
+      resource: { db: 'admin', collection: '' },
+      actions: [
+        'changeStream',
+        'collStats',
+        'compactStructuredEncryptionData',
+        'convertToCapped',
+        'createCollection',
+        'createIndex',
+        'createSearchIndexes',
+        'dbHash',
+        'dbStats',
+        'dropCollection',
+        'dropIndex',
+        'dropSearchIndex',
+        'find',
+        'insert',
+        'killCursors',
+        'listCollections',
+        'listIndexes',
+        'listSearchIndexes',
+        'updateSearchIndex',
+        'planCacheRead',
+        'remove',
+        'renameCollectionSameDB',
+        'update'
+      ]
+    },
+    {
+      resource: { db: 'admin', collection: 'system.js' },
+      actions: [
+        'changeStream',
+        'collStats',
+        'compactStructuredEncryptionData',
+        'convertToCapped',
+        'createCollection',
+        'createIndex',
+        'createSearchIndexes',
+        'dbHash',
+        'dbStats',
+        'dropCollection',
+        'dropIndex',
+        'dropSearchIndex',
+        'find',
+        'insert',
+        'killCursors',
+        'listCollections',
+        'listIndexes',
+        'listSearchIndexes',
+        'updateSearchIndex',
+        'planCacheRead',
+        'remove',
+        'renameCollectionSameDB',
+        'update'
+      ]
+    }
+  ],
+  inheritedRoles: [],
+  inheritedPrivileges: [
+    {
+      resource: { db: 'admin', collection: '' },
+      actions: [
+        'changeStream',
+        'collStats',
+        'compactStructuredEncryptionData',
+        'convertToCapped',
+        'createCollection',
+        'createIndex',
+        'createSearchIndexes',
+        'dbHash',
+        'dbStats',
+        'dropCollection',
+        'dropIndex',
+        'dropSearchIndex',
+        'find',
+        'insert',
+        'killCursors',
+        'listCollections',
+        'listIndexes',
+        'listSearchIndexes',
+        'updateSearchIndex',
+        'planCacheRead',
+        'remove',
+        'renameCollectionSameDB',
+        'update'
+      ]
+    },
+    {
+      resource: { db: 'admin', collection: 'system.js' },
+      actions: [
+        'changeStream',
+        'collStats',
+        'compactStructuredEncryptionData',
+        'convertToCapped',
+        'createCollection',
+        'createIndex',
+        'createSearchIndexes',
+        'dbHash',
+        'dbStats',
+        'dropCollection',
+        'dropIndex',
+        'dropSearchIndex',
+        'find',
+        'insert',
+        'killCursors',
+        'listCollections',
+        'listIndexes',
+        'listSearchIndexes',
+        'updateSearchIndex',
+        'planCacheRead',
+        'remove',
+        'renameCollectionSameDB',
+        'update'
+      ]
+    }
+  ],
+  isBuiltin: true
+}
+admin> db.getRole("admin85")
+null
+admin>
+
+
+C:\Users\91744>mkdir c:\data1\config c:\data1\db c:\data1\log
+
+C:\Users\91744>mkdir c:\data2\config c:\data2\db c:\data2\log
+
+C:\Users\91744>mkdir c:\data3\config c:\data3\db c:\data3\log
+
+C:\Users\91744>cd c:\data1\config>notepad mongod.cnf
+The system cannot find the path specified.
+
+C:\Users\91744>cd c:\data1\config
+
+c:\data1\config>notepad mongod.cnf
+
+c:\data1\config>cd c:\data2\config
+
+c:\data2\config>notepad mongod.cnf
+
+c:\data2\config>cd c:\data3\config
+
+c:\data3\config>notepad mongod.cnf
+
+c:\data3\config>cd \
+
+c:\>mongod --dbpath "C:\Program Files\MongoDB\Server\7.0\data" --logpathC:\Program Files\MongoDB\Server\7.0\log\mongod.log"--port 27017 --storageEngine=wiredTiger --journal --replSet testrep
+Error parsing command line: unrecognised option '--logpathC:\Program'
+try 'mongod --help' for more information
+
+c:\>mongod --dbpath"C:\Program Files\MongoDB\Server\7.0\data"--logpath
+C:\Program Files\MongoDB\Server\7.0\log\mongod.log"--port 27017--stora
+geEngine=wiredTiger --journal--replSet testrep
+Error parsing command line: unrecognised option '--dbpathC:\Program Files\MongoDB\Server\7.0\data--logpathC:\Program'
+try 'mongod --help' for more information
+
+c:\>mongod --dbpath "C:\Program Files\MongoDB\Server\7.0\data" --logpathC:\Program Files\MongoDB\Server\7.0\log\mongod.log"--port 27017 --storageEngine=wiredTiger --journal --replSet testrep
+Error parsing command line: unrecognised option '--logpathC:\Program'
+try 'mongod --help' for more information
+    mongod --dbpath "C:\Program Files\MongoDB\Server\7.0\data" --logpa
+eEngine=wiredTiger --journal --replSet testrepServer\7.0\data" --logpathC:\Program Files\MongoDB\Server\7.0\log\mongod.log"--port 27017 --storag
+Error parsing command line: unrecognised option '--logpathC:\Program'
+try 'mongod --help' for more information
+
+c:\>mongod --dbpath "C:\Program Files\MongoDB\Server\7.0\data" --logpath "C:\Program Files\MongoDB\Server\7.0\log\mongod.log"--port 27017 --storageEngine=wiredTiger --journal --replSet testrep
+Error parsing command line: unrecognised option '--journal'
+try 'mongod --help' for more information
+
+c:\>mongod --dbpath "C:\Program Files\MongoDB\Server\7.0\data" --logpath "C:\Program Files\MongoDB\Server\7.0\log\mongod.log"--port 27017 --stormongod --dbpath "C:\Program Files\MongoDB\Server\7.0\data" --logpath "C:\Program Files\MongoDB\Server\7.0\log\mongod.log"--port 27017 --
+storageEngine=wiredTiger --journal --replSet testrep
+Error parsing command line: unrecognised option '--journal'
+try 'mongod --help' for more information
+
+c:\>mongod --dbpath "C:\Program Files\MongoDB\Server\7.0\data" --logpath "C:\Program Files\MongoDB\Server\7.0\log\mongod.log" --port 27017 -
+-storageEngine=wiredTiger --journal --replSet testrep
+Error parsing command line: unrecognised option '--journal'
+try 'mongod --help' for more information
