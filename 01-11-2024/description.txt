@@ -1,0 +1,1 @@
+Completed trainer login and student login create a new account is done for both trainer and the student. still need to route the page and some content of the page is started.
