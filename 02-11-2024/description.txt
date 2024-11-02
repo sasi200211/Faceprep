@@ -1,0 +1,1 @@
+Completed routing, content of all the pages and in-progress to connect the signup page page decoration and design works are pending alignment work for all the pages.
